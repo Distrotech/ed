@@ -1,0 +1,200 @@
+2012-10-09  Antonio Diaz Diaz  <ant_diaz@teleline.es>
+
+	* Version 1.7 released.
+	* main.c (main): Set invocation_name before calling show_error.
+	* Changed quote characters in messages as advised by GNU Standards.
+	* ed.texinfo: Fixed description of address offsets.
+	* ed.texinfo: Fixed a link to the Bash manual.
+	* configure: 'datadir' renamed to 'datarootdir'.
+	* Makefile.in: Added new target 'install-bin'.
+
+2012-01-01  Antonio Diaz Diaz  <ant_diaz@teleline.es>
+
+	* Version 1.6 released.
+	* io.c (put_tty_line): Null characters where incorrectly
+	  shown by the 'l' command. (Reported by Martin Guy).
+	* io.c (read_stream): Corrected the condition deciding when to
+	  show the message "Newline appended".
+	* main_loop.c (exec_command): The 'modified' flag is now set
+	  when reading a non-empty file into an empty buffer.
+	* regex.c (translit_text): Fixed typo that prevented using NUL
+	  characters in regular expressions.
+	* main_loop.c (exec_command): Return ERR if 'system' can't
+	  create a shell process.
+	* main_loop.c (main_loop): Flush stdout/stderr before reading a
+	  new command.
+	* buffer.c (put_sbuf_line): Added size parameter.
+	* ed.1: Man page is now generated with 'help2man'.
+	* ed.1: All command-line options are now documented in the man page.
+	* Restored copyright notices of Andrew L. Moore. It seems Andrew
+	  granted some permissions but never assigned copyright to the FSF.
+
+2010-08-30  Antonio Diaz Diaz  <ant_diaz@teleline.es>
+
+	* Version 1.5 released.
+	* buffer.c (append_lines): Fixed 'a', 'c' and 'i' commands.
+	  (When used in a global command list, the commands following
+	  them in the list were ignored).
+	* main_loop.c (exec_command): Fixed 'e' command. (It quitted
+	  when invoked a second time with a modified buffer).
+	* main.c: Added new option '--restricted'.
+	* 'red' has been converted to a script invoking 'ed --restricted'.
+	* Description of ed in the manual has been changed.
+	* testsuite: Modified some tests and removed obsolete posix tests.
+	* main_loop.c: 'ibufp' variable made local to main_loop.
+	* Defined type bool to make clear which functions and variables
+	  are Boolean.
+	* Added 'const' to all pointer declarations accepting it.
+	* regex.c (replace_matching_text): Make se_max an enum.
+	* signal.c: Include termios.h
+	* Converted C99 style comments '//' to C89 style comments '/* */'.
+	* ed.texinfo: Fixed an erratum.
+	* Changed copyright holder from Andrew, Antonio to the FSF.
+
+2009-07-10  Antonio Diaz Diaz  <ant_diaz@teleline.es>
+
+	* Version 1.4 released.
+	* buffer.c, main_loop.c: Undo now restores the modified status.
+	* regex.c (search_and_replace): Fixed a race condition with user
+	  interrupt.
+	* signal.c: Added functions resize_line_buffer and
+	  resize_undo_buffer to definitively fix the aliasing warnings.
+	* Some minor corrections have been made to the manual.
+
+2009-05-24  Antonio Diaz Diaz  <ant_diaz@teleline.es>
+
+	* Version 1.3 released.
+	* carg_parser.c (ap_resize_buffer): An aliasing related segfault
+	  that only occurs when overoptimizing with GCC on some
+	  architectures (alpha, sparc) has been (hopefully) fixed.
+	* signal.c (resize_buffer): Likewise.
+
+2009-01-31  Antonio Diaz Diaz  <ant_diaz@teleline.es>
+
+	* Version 1.2 released.
+	* configure: Locale has been fixed to 'C'.
+	* Makefile.in: Man page is now installed by default.
+	* 'make install-info' should now work on Debian and OS X.
+	* ed.texinfo: License updated to GFDL version 1.3 or later.
+
+2008-10-14  Antonio Diaz Diaz  <ant_diaz@teleline.es>
+
+	* Version 1.1 released.
+	* configure: Quote arguments stored in config.status.
+
+2008-08-21  Antonio Diaz Diaz  <ant_diaz@teleline.es>
+
+	* Version 1.0 released.
+	* configure: Added option '--program-prefix'.
+	* signal.c (strip_escapes): Buffer overflow fixed.
+	* signal.c (resize_buffer): Pointer aliasing warning fixed.
+
+2008-02-24  Antonio Diaz Diaz  <ant_diaz@teleline.es>
+
+	* Version 0.9 released.
+	* signal.c (sighup_handler): Return 0 if no error.
+	* Arg_parser updated to 1.1.
+
+2007-08-18  Antonio Diaz Diaz  <ant_diaz@teleline.es>
+
+	* Version 0.8 released.
+	* check.sh: Testsuite exits unsuccesfully in case of error.
+	* ed.1: Fixed some minor problems in the manual page.
+	* ed.texinfo: Added 21kB of legalese (fdl.texinfo).
+
+2007-07-18  Antonio Diaz Diaz  <ant_diaz@teleline.es>
+
+	* Version 0.7 released.
+	* buffer.c (dec_addr): Now returns correct address when wrapping.
+
+2007-06-29  Antonio Diaz Diaz  <ant_diaz@teleline.es>
+
+	* Version 0.6 released.
+	* License updated to GPL version 3 or later.
+	* signal.c (sigwinch_handler, set_signal):
+	  Fixed two minor compatibility problems.
+	* main_loop.c (main_loop):
+	  Fixed an infinite loop when reading an empty script.
+
+2007-03-09  Antonio Diaz Diaz  <ant_diaz@teleline.es>
+
+	* Version 0.5 released.
+	* main_loop.c (next_addr): '%' reimplemented as it was in ed 0.2.
+
+2007-01-15  Antonio Diaz Diaz  <ant_diaz@teleline.es>
+
+	* Version 0.4 released.
+	* Fixed some minor problems in the testsuite.
+
+2006-11-11  Antonio Diaz Diaz  <ant_diaz@teleline.es>
+
+	* Version 0.3 released.
+	* buffer.c (open_sbuf): Fixed symlink vulnerability using 'tmpfile'.
+	* signal.c: Fixed signal handling for SIGINT.
+	* main_loop.c (exec_command): Fixed 'c' and 'i' commands with
+	  address 0.
+	* The pause mode has been removed.
+	* main.c: Added new options '--loose-exit-status' and '--verbose'.
+	* carg_parser.c: New argument parser that replaces 'getopt_long'.
+	* 'configure' and 'Makefile.in' have been replaced.
+	* Removed recursive make for testsuite.
+	* Created directory 'doc'.
+	* Removed all pre ISO C89 code.
+	* Removed all global variables.
+	* ed.texinfo: Added the changes from Andrew and some mine.
+
+Sun Jun 26 22:21:59 1994 Andrew Moore  <alm@worm.talke.org>
+
+	* GNU ed 0.2 release.
+
+	* main.c (yank_lines): Added yank buffer.
+	  A range of lines may be cut ('d') to or yanked ('y') from
+	  a yank buffer.  Lines in the buffer may be put ('x')
+	  after the addressed line (. by default).
+
+	* main.c (display_lines): Page output of listed ('l') lines
+	  if isatty(0).
+
+	* main.c (main): Replaced isatty(0) with is_regular_file().
+	  Errors in piped scripts, as opposed to regular scripts or
+	  here documents, do not force ed to exit.
+
+        * Capitilize error messages per the standard.
+
+Wed Jun 22 01:06:11 1994 Andrew Moore  <alm@woops.talke.org>
+
+	* ed.h: Generic definition of INT_MAX <bson@ai.mit.edu>
+
+	* signal.c: Added #ifndef SIG_ERR <assar@stacken.kth.se>
+
+Tue Apr 19 10:52:51 1994 Andrew Moore  <alm@woops.talke.org>
+
+	* Version 0.1.  Initial release for GNU.
+
+	* main.c (exec_command): Add comment command '#'.
+
+Mon Mar 21 21:58:11 PST 1994 Andrew Moore  <alm@netcom.com>
+
+	*  Use umask 077 to open buffer file.
+
+Sat Mar 19 14:06:52 PST 1994 Andrew Moore  <alm@netcom.com>
+
+	* Removed problematic DES and insque support.
+
+Wed Jan 19 20:42:50 PST 1994 Andrew Moore  <alm@netcom.com>
+
+	* Added reliable signal(2) for SysV.
+
+Dec 1993  François Pinard  <pinard@icule>
+
+	* GNUified ed.
+
+
+Copyright (C) 1993 François Pinard
+Copyright (C) 1994 Andrew Moore
+Copyright (C) 2006, 2007, 2008, 2009, 2010, 2011, 2012
+Free Software Foundation, Inc.
+
+This file is a collection of facts, and thus it is not copyrightable,
+but just in case, you have unlimited permission to copy, distribute and
+modify it.

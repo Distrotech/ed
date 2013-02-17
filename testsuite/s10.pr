@@ -1,0 +1,5 @@
+a
+hello
+.
+s/[h[.]/x/
+hello

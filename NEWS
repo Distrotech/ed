@@ -1,0 +1,15 @@
+Changes in version 1.7:
+
+Show the "Try 'ed --help' for more information." message if a bad option
+is given in the command line.
+
+Quote characters in messages have been changed as advised by GNU Coding
+Standards.
+
+The description of address offsets in the manual and a link to the Bash
+manual have been fixed.
+
+Configure option "--datadir" has been renamed to "--datarootdir" to
+follow GNU Standards.
+
+The target "install-bin" has been added to the Makefile.
